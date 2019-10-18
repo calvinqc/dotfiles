@@ -14,7 +14,9 @@ call plug#begin('~/.config/nvim/plugged')
     abbr cosnt const
     abbr attribtue attribute
     abbr attribuet attribute
-
+    
+    set encoding=utf8
+    set guifont=DroidSansMono\ Nerd\ Font:h11
     set autoread " detect when a file is changed
 
     set history=1000 " change history to 1000
@@ -125,9 +127,10 @@ call plug#begin('~/.config/nvim/plugged')
 
     " LightLine {{{
         Plug 'itchyny/lightline.vim'
-        Plug 'nicknisi/vim-base16-lightline'
+        " Plug 'ryanoasis/vim-devicons'
+        " Plug 'nicknisi/vim-base16-lightline'
         let g:lightline = {
-            \   'colorscheme': 'base16',
+            \   'colorscheme': 'jellybeans',
             \   'active': {
             \       'left': [ [ 'mode', 'paste' ],
             \               [ 'gitbranch' ],
@@ -146,8 +149,8 @@ call plug#begin('~/.config/nvim/plugged')
             \   'component_function': {
             \       'fileencoding': 'helpers#lightline#fileEncoding',
             \       'filename': 'helpers#lightline#fileName',
-            \       'fileformat': 'helpers#lightline#fileFormat',
-            \       'filetype': 'helpers#lightline#fileType',
+            \       'fileformat': 'MyFileformat',
+            \       'filetype': 'MyFiletype',
             \       'gitbranch': 'helpers#lightline#gitBranch',
             \       'cocstatus': 'coc#status',
             \       'currentfunction': 'helpers#lightline#currentFunction',
@@ -164,6 +167,13 @@ call plug#begin('~/.config/nvim/plugged')
             \   'separator': { 'left': '', 'right': '' },
             \   'subseparator': { 'left': '', 'right': '' }
         \ }
+        function! MyFiletype()
+            return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' .WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+        endfunction
+
+        function! MyFileformat()
+            return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+        endfunction
     " }}}
 " }}}
 
@@ -377,6 +387,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'moll/vim-bbye'
     nmap <leader>b :Bdelete<cr>
 
+
     " Writing in vim {{{{
         Plug 'junegunn/goyo.vim'
 
@@ -390,12 +401,13 @@ call plug#begin('~/.config/nvim/plugged')
     " NERDTree {{{
         Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
         Plug 'Xuyuanp/nerdtree-git-plugin'
-        Plug 'ryanoasis/vim-devicons'
         Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
         let g:WebDevIconsOS = 'Darwin'
         let g:WebDevIconsUnicodeDecorateFolderNodes = 1
         let g:DevIconsEnableFoldersOpenClose = 1
         let g:DevIconsEnableFolderExtensionPatternMatching = 1
+        let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+        let appendArtifactFix = 0
         let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
         let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
         let NERDTreeNodeDelimiter = "\u263a" " smiley face
@@ -643,6 +655,8 @@ call plug#begin('~/.config/nvim/plugged')
     " }}}
 
     Plug 'ekalinin/Dockerfile.vim'
+    Plug 'ryanoasis/vim-devicons'
+
 " }}}
 
 call plug#end()

@@ -9,6 +9,6 @@
 #   export TERM=tmux-256color-italic
 #
 tmux-256color-italic|tmux with 256 colors,
-  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
+  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m,
   khome=\E[1~, kend=\E[4~,
   use=xterm-256color, use=screen-256color,

@@ -42,5 +42,5 @@ precmd() {
     print -P "\n%F{005}%~ $(node_prompt)"
 }
 
-export PROMPT='%(?.%F{006}.%F{009})$PROMPT_SYMBOL%f '
+export PROMPT='%(?.%F{006}.%F{009})$PROMPT_SYMBOL '
 export RPROMPT=''
